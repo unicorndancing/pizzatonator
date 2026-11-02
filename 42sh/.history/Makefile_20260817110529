@@ -1,0 +1,84 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile_20260817110529                            :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: mlapique <mlapique@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2024/10/15 14:15:56 by lmaume            #+#    #+#              #
+#    Updated: 2026/08/17 17:57:44 by mlapique         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+NAME = 42sh
+ARCHIVE = libft/printerr/libft.a
+LIBS = -lreadline -lhistory
+
+BLUE	= \033[1;34m
+RESET	= \033[0m
+GREEN	= \033[1;32m
+
+CC = cc
+CFLAGS =	-Wall -Wextra -Werror	\
+			-I includes				\
+			-g3
+#-fsanitize=address
+
+SRCS = $(wildcard *.c)			\
+	   $(wildcard tokenizer/*.c)	\
+		$(wildcard arena/*.c)	\
+		$(wildcard debug/*.c)	\
+
+OBJS	=	$(SRCS:.c=.o)
+
+VALGRIND =	\
+		valgrind							\
+		--leak-check=full					\
+		--show-leak-kinds=all				\
+		--trace-children=yes				\
+		--track-fds=yes						\
+		--suppressions="./.valgrind.supp"	\
+		-s									
+#		--gen-suppressions=yes
+
+all: $(NAME)
+
+$(NAME): $(ARCHIVE) $(OBJS) 
+	echo "$(BLUE)$(NAME) \$$(OBJS) compiled.$(RESET)"
+	$(CC) $(CFLAGS) $(OBJS) $(ARCHIVE) $(LIBS) -o $(NAME)
+	echo "$(CC) \$$(OBJS) $(ACHIVE) $(LIBS) $(CFLAGS) -o $(NAME)"
+	echo "$(BLUE)Linked objects to create$(GREEN) $(NAME) $(RESET)"
+
+$(ARCHIVE):
+	make -C ./libft/printerr/ all
+	make -C libft/printerr all 
+	
+#%.o : %.c
+#	$(CC) $(CFLAGS) -c $< -o $@
+
+clean:
+	rm -rf $(OBJS)
+	echo "$(BLUE)Cleaning \$$(OBJS) $(RESET)"
+	make -C libft clean
+
+fclean: 
+	rm -rf $(OBJS)
+	echo "$(BLUE)Cleaned \$$(OBJS).$(RESET)"
+	rm -rf $(NAME)
+	echo "$(BLUE)Cleaned $(NAME).$(RESET)"
+	rm -rf $(ARCHIVE)
+	echo "$(BLUE)Cleaned $(ARCHIVE).$(RESET)"
+	make -C libft/printerr fclean
+
+re: fclean all
+
+project_re:
+	@rm -rf $(OBJS)
+	@rm -rf $(NAME)
+	make all -j
+
+valgrind: all
+	$(VALGRIND) ./$(NAME)
+
+.PHONY: all re clean fclean project_re libft
+.SILENT: project_re re fclean clean $(NAME) objs_msg

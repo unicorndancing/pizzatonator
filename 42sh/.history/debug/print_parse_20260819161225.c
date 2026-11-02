@@ -1,0 +1,97 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   print_parse.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mlapique <mlapique@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/08/18 19:48:42 by mlapique          #+#    #+#             */
+/*   Updated: 2026/08/19 16:12:25 by mlapique         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "../includes/tokenizer.h"
+
+void print_parse(t_parse parse)
+{
+
+        if (parse.begining_word != NULL)
+        {
+            char word[parse.endword - parse.begining_word + 1];
+    
+            ft_memcpy(word, parse.begining_word, parse.endword - parse.begining_word);
+            
+            printf("word is : **");
+            printf("%s", word);
+            printf("**\n");
+            switch (parse.token)
+            {
+                case WORD:
+                    printf("WORD");
+                    break;
+
+                case DOLLAR:
+                    printf("DOLLAR");
+                    break;
+    
+                case DOLLAR_DOUBLE:
+                    printf("DOLLAR_DOUBLE");
+                    break;
+    
+                case SUBSHELL:
+                    printf("SUBSHELL");
+                    break;
+    
+                case REDIR_OUT:
+                    printf("REDIR_OUT");
+                    break;
+    
+                case REDIR_IN:
+                    printf("REDIR_IN");
+                    break;
+    
+                case HEREDOC:
+                    printf("HEREDOC");
+                    break;
+    
+                case APPEND:
+                    printf("APPEND");
+                    break;
+    
+                case REDIR_OUT_WITH_AND:
+                    printf("REDIR_OUT_WITH_AND");
+                    break;
+    
+                case APPEND_WITH_AND:
+                    printf("APPEND_WITH_AND");
+                    break;
+    
+                case REDIR_IN_WITH_AND:
+                    printf("REDIR_IN_WITH_AND");
+                    break;
+    
+                case PIPE:
+                    printf("PIPE");
+                    break;
+    
+                case AND:
+                    printf("AND");
+                    break;
+    
+                case OR:
+                    printf("OR");
+                    break;
+    
+                case SEMILOCON:
+                    printf("SEMILOCON");
+                    break;
+    
+                case WHITESPACE:
+                    printf("WHITESPACE");
+                    break;
+    
+            }
+            printf("\n\n\n");
+            
+        }
+    }

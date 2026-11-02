@@ -1,0 +1,33 @@
+echo hello	            complete
+echo "hello"	        complete
+echo 'hello'	        complete
+echo hello \\	        complete
+echo hello | cat	    complete
+echo hello > file	    complete
+(echo hello)	        complete
+echo $(date)	        complete
+echo $((1 + 2))	        complete
+cat <<EOF\nhello\nEOF	complete
+echo "# hello"	        complete
+echo hello # comment	complete
+echo 'hello	            incomplete
+echo $'hello	        incomplete
+echo hello \	        incomplete
+echo hello ||	        incomplete
+echo hello >	        incomplete
+echo hello <	        incomplete
+echo hello >>	        incomplete
+echo hello <<	        incomplete
+cat <<EOF\nhello	    incomplete
+cat <<EOF	            incomplete
+echo $((1 + 2	        incomplete
+echo $(date	            incomplete
+(echo hello	            incomplete
+echo hello &&	        incomplete
+echo hello |	        incomplete
+echo "hello	            incomplete
+
+
+autre test
+'biojour'
+'"bijour je suis un test guillemet"dasdsadasdasddsa rtest (je suis test parenthese) $(subshelltest) $expandtest  |letestpipe >><<>>>tesssmoins >testttttplus     $$ $$ $$44$$     $$$$$$$  >& <& "test test"test2dsadsadas dautre truc'

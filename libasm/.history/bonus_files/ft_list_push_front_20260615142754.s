@@ -1,0 +1,4 @@
+global ft_list_push_front
+
+
+section .text

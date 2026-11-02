@@ -1,0 +1,29 @@
+Input	Result
+echo hello	complete
+echo "hello"	complete
+echo 'hello'	complete
+echo "hello	incomplete
+echo 'hello	incomplete
+echo $'hello	incomplete
+echo hello \	incomplete
+echo hello \\	complete
+echo hello |	incomplete
+echo hello | cat	complete
+echo hello &&	incomplete
+echo hello ||	incomplete
+echo hello >	incomplete
+echo hello <	incomplete
+echo hello >>	incomplete
+echo hello <<	incomplete
+echo hello > file	complete
+(echo hello	incomplete
+(echo hello)	complete
+echo $(date	incomplete
+echo $(date)	complete
+echo $((1 + 2	incomplete
+echo $((1 + 2))	complete
+cat <<EOF	incomplete
+cat <<EOF\nhello	incomplete
+cat <<EOF\nhello\nEOF	complete
+echo "# hello"	complete
+echo hello # comment	complete
