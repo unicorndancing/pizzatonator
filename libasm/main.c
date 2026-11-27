@@ -19,7 +19,7 @@ ssize_t ft_write(int fd, const void *buf, size_t count);
 char    *ft_strdup(const char *s);
 void    ft_list_push_front(t_list **begin_list, void *data);
 int     ft_list_size(t_list *begin_list);
-char *    ft_atoi_base(char *str, char *base);
+long    ft_atoi_base(char *str, char *base);
 
 
 static void test_strlen(void)
@@ -283,19 +283,19 @@ void test_atoi_base()
     
     ft_atoi_base("1233333", "123");
     printf("\n========== atoibase ==========\n");
-    printf("%s\n", ft_atoi_base("123", "0123456789"));
+    printf("%i\n", ft_atoi_base("123", "0123456789"));
     
-    printf("%s\n", ft_atoi_base("99999999", "0123456789"));
+    printf("%i\n", ft_atoi_base("99999999", "0123456789"));
 
-    printf("%s\n", ft_atoi_base("-0111101", "01"));
+    printf("%i\n", ft_atoi_base("-0111101", "01"));
 
-    printf("%s\n", ft_atoi_base("123", "123456789"));
+    printf("%i\n", ft_atoi_base("123", "123456789"));
 
-    printf("%s\n", ft_atoi_base("ff", "0123456789abcdef"));
+    printf("%i\n", ft_atoi_base("ff", "0123456789abcdef"));
 
-    printf("%s\n", ft_atoi_base("unicorn", "unicorn"));
+    printf("%i\n", ft_atoi_base("unicorn", "unicorn"));
 
-    printf("%s\n", ft_atoi_base("0", "056789"));
+    printf("%i\n", ft_atoi_base("0", "056789"));
 }
 
 int main(void)
